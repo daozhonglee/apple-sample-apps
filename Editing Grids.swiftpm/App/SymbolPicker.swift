@@ -60,6 +60,10 @@ struct SymbolPicker: View {
                 ForEach(pickableSymbols) { symbol in
                     Button {
                         self.symbol = symbol
+						//  SwiftUI 中用于关闭/退出当前视图的标准方法。
+						//presentationMode - 这是一个环境值（Environment Value），通常通过 @Environment(\.presentationMode) 绑定获取
+						// wrappedValue - 用于访问 Binding 类型的实际值
+						// dismiss() - 触发视图的关闭操作
                         presentationMode.wrappedValue.dismiss()
                     } label: {
 						Image(systemName: symbol.name)

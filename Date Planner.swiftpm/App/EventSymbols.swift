@@ -4,7 +4,10 @@ See the License.txt file for this sample’s licensing information.
 
 import Foundation
 
+/// 事件符号工具结构体
+/// 提供SF Symbols符号名称的管理和随机获取功能
 struct EventSymbols {
+    /// 随机获取一个符号名称
     static func randomName() -> String {
         if let random = symbolNames.randomElement() {
             return random
@@ -13,6 +16,9 @@ struct EventSymbols {
         }
     }
     
+    /// 随机获取指定数量的符号名称
+    /// - Parameter number: 需要的符号数量
+    /// - Returns: 符号名称数组
     static func randomNames(_ number: Int) -> [String] {
         var names: [String] = []
         for _ in 0..<number {
@@ -21,6 +27,7 @@ struct EventSymbols {
         return names
     }
         
+    /// 可用的SF Symbols符号名称列表
     static var symbolNames: [String] = [
         "house.fill",
         "ticket.fill",
