@@ -4,6 +4,7 @@ See the License.txt file for this sample’s licensing information.
 
 import SwiftUI
 
+//趣味
 struct FunFactsView: View {
 
     @State private var funFact = ""
