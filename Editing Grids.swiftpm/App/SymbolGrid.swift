@@ -100,6 +100,11 @@ struct SymbolGrid: View {
         .navigationTitle("My Symbols")
         .navigationBarTitleDisplayMode(.inline)
         /// 模态视图配置
+        // isPresented:
+        //  绑定到一个布尔值 isAddingSymbol，控制 sheet 的显示和隐藏。当 isAddingSymbol 为 true 时，sheet 会显示；为 false 时，sheet 会隐藏。
+        // onDismiss:
+        //  当 sheet 被关闭时调用的回调函数。在这里，addSymbol 方法会在 sheet 关闭时被调用。
+        // content:闭包中定义了要显示的视图内容。在这里，SymbolPicker 视图会在 sheet 中显示，并绑定到 selectedSymbol。
         .sheet(isPresented: $isAddingSymbol, onDismiss: addSymbol) {
             SymbolPicker(symbol: $selectedSymbol)
         }

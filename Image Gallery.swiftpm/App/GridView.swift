@@ -5,12 +5,14 @@ See the License.txt file for this sample’s licensing information.
 import SwiftUI
 
 struct GridView: View {
+    // 使用 @EnvironmentObject 接收共享的数据模型
     @EnvironmentObject var dataModel: DataModel
 
-    private static let initialColumns = 3
+    // @State 用于管理视图的本地状态
     @State private var isAddingPhoto = false
     @State private var isEditing = false
 
+    private static let initialColumns = 3
     @State private var gridColumns = Array(repeating: GridItem(.flexible()), count: initialColumns)
     @State private var numColumns = initialColumns
     
@@ -24,8 +26,10 @@ struct GridView: View {
                 ColumnStepper(title: columnsTitle, range: 1...8, columns: $gridColumns)
                 .padding()
             }
+            // LazyVGrid 用于创建网格布局
             ScrollView {
                 LazyVGrid(columns: gridColumns) {
+                    // ForEach 遍历并显示所有图片项
                     ForEach(dataModel.items) { item in
                         GeometryReader { geo in
                             NavigationLink(destination: DetailView(item: item)) {
@@ -54,11 +58,11 @@ struct GridView: View {
                 .padding()
             }
         }
-        .navigationBarTitle("Image Gallery")
-        .navigationBarTitleDisplayMode(.inline)
+        // .sheet 用于显示模态视图
         .sheet(isPresented: $isAddingPhoto) {
             PhotoPicker()
         }
+        // 工具栏配置
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(isEditing ? "Done" : "Edit") {
@@ -83,4 +87,4 @@ struct GridView_Previews: PreviewProvider {
             .previewDevice("iPad (8th generation)")
     }
 }
- 
+

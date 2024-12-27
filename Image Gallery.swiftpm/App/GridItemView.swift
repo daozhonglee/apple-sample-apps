@@ -10,11 +10,14 @@ struct GridItemView: View {
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
+            // AsyncImage 用于异步加载和显示图片
             AsyncImage(url: item.url) { image in
+                // 图片加载成功后的显示配置
                 image
                     .resizable()
                     .scaledToFill()
             } placeholder: {
+                // 加载过程中显示进度指示器
                 ProgressView()
             }
             .frame(width: size, height: size)
