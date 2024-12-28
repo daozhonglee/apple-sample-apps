@@ -16,6 +16,7 @@ struct MoodViewFull: View {
             Text(isEditing ? "What's your mood?" : "Mood")
                 .foregroundColor(.darkBrown)
                 .font(fontStyle.uiFont(15))
+                //maxWidth 为 .infinity 的 .frame 修饰符会水平拉伸文本视图并填充可用空间。对齐参数可确保框架内的任何内容都与前缘对齐。
                 .frame(maxWidth: .infinity, alignment: isEditing ? .leading : .center)
 
 
@@ -44,8 +45,10 @@ struct MoodViewFull: View {
                     }
                 }
             }
+            //通过将最大高度设置为 .infinity 将卡片标题推到边缘。
             .frame(maxHeight: .infinity, alignment: .center)
         }
+        //设置 minHeight 和 maxHeight 允许视图针对不同的屏幕尺寸进行缩放。
         .frame(minHeight: 100, maxHeight: 200)
         .padding()
     }

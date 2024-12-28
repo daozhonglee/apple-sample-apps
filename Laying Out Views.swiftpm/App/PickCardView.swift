@@ -4,13 +4,15 @@ See the License.txt file for this sample’s licensing information.
 
 import SwiftUI
 
+// PickCardView: 选择卡片类型的视图
 struct PickCardView: View {
-    @Binding var entry: Entry
-    @Binding var showingSheet: Bool
+    @Binding var entry: Entry         // 当前条目
+    @Binding var showingSheet: Bool   // 控制显示状态
 
     var body: some View {
         VStack {
             Grid (horizontalSpacing: 15, verticalSpacing: 15) {
+                // 表头行：显示卡片尺寸选项
                 GridRow {
                     Color.clear
                         .gridCellUnsizedAxes([.horizontal, .vertical])
@@ -20,6 +22,7 @@ struct PickCardView: View {
                         .modifier(FontStyle(size: 18))
                 }
 
+                // 遍历所有卡片类型，创建选择按钮
                 ForEach(Card.allCases, id: \.id){ option in
                     GridRow {
                         Text(Card.title(option))
@@ -72,8 +75,9 @@ struct PickCardView_Previews: PreviewProvider {
     }
 }
 
+// CardOptionView: 卡片选项的视觉表现
 struct CardOptionView: View {
-    var icon: String
+    var icon: String     // 卡片图标名称
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)

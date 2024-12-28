@@ -5,28 +5,37 @@ See the License.txt file for this sample’s licensing information.
 import SwiftUI
 
 struct EntryView: View {
-    @Binding var entry: Entry
-    @Binding var entryCopy: Entry
-    @Binding var isEditing: Bool
+    // 绑定属性，用于数据传递和状态管理
+    @Binding var entry: Entry          // 当前条目
+    @Binding var entryCopy: Entry      // 编辑时的副本
+    @Binding var isEditing: Bool       // 是否处于编辑状态
     
-    @State private var showingCardOptions = false
-    @State private var showingSettings = false
+    @State private var showingCardOptions = false  // 控制是否显示卡片选项
+    @State private var showingSettings = false     // 控制是否显示设置
 
+    // 判断是否是小型视图
     private func isSmallView(for entryRow: EntryRow) -> Bool {
         return entryRow.cards[0].size == .small
     }
+    
+    // 获取当前应该显示的条目（编辑状态显示副本，否则显示原始条目）
     private var currentEntry: Entry {
         isEditing ? entryCopy : entry
     }
+    
+    // 获取当前条目的绑定
     private var currentEntryBinding: Binding<Entry> {
         isEditing ? $entryCopy : $entry
     }
     
     var body: some View {
+        // 主视图结构
         ScrollView {
             Grid(alignment: .top) {
+                // 标题视图
                 TitleView(entry: currentEntryBinding, isEditing: isEditing)
                     .padding(5)
+                // 循环展示所有卡片行
                 ForEach(0..<currentEntry.entryRows.count, id: \.self) { row in
                     if isSmallView(for: currentEntry.entryRows[row]) {
                         GridRow {
@@ -47,6 +56,7 @@ struct EntryView: View {
             }
             .padding()
             
+            // 添加新卡片的按钮（仅在编辑模式显示）
             Button() {
                 showingCardOptions.toggle()
             } label: {

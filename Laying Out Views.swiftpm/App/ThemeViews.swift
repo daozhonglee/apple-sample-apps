@@ -4,6 +4,7 @@ See the License.txt file for this sample’s licensing information.
 
 import SwiftUI
 
+// EntryBannerTheme: 根据不同主题展示对应的横幅视图
 struct EntryBannerTheme: View {
     var forTheme: JournalTheme
     var body: some View {
@@ -22,6 +23,7 @@ struct EntryBannerTheme: View {
     }
 }
 
+// BackgroundIcon: 根据主题显示对应的图标
 struct BackgroundIcon: View {
     var forTheme: JournalTheme
     var body: some View {
@@ -46,6 +48,7 @@ struct BackgroundIcon: View {
     }
 }
 
+// EntryBackground: 根据主题显示对应的背景图片
 struct EntryBackground: View {
     var forTheme: JournalTheme
         var body: some View {
@@ -69,6 +72,7 @@ struct EntryBackground: View {
         }
 }
 
+// CardBackground: 定义卡片的背景样式
 struct CardBackground: View {
     var theme: JournalTheme = .line
     var body: some View {
@@ -77,6 +81,7 @@ struct CardBackground: View {
             .shadow(color: Color.shadow, radius: 4)
     }
     
+    // 根据主题返回对应的背景颜色
     func getCardBackground(forTheme: JournalTheme) -> Color {
         switch forTheme {
         case .line:
@@ -93,6 +98,7 @@ struct CardBackground: View {
     }
 }
 
+// CardStyle: 卡片样式的视图修饰器
 struct CardStyle: ViewModifier {
     var theme: JournalTheme = .line
     func body(content: Content) -> some View {
@@ -102,7 +108,9 @@ struct CardStyle: ViewModifier {
     }
 }
 
+// JournalFont扩展：为不同字体提供统一的字体设置方法
 extension JournalFont {
+    // 根据字体类型和大小返回对应的Font对象
     func uiFont( _ size: CGFloat) -> Font{
         switch self {
         case .font1:
@@ -116,6 +124,7 @@ extension JournalFont {
     }
 }
 
+// FontStyle: 文本样式的视图修饰器
 struct FontStyle: ViewModifier {
     var size: CGFloat
     func body(content: Content) -> some View {
@@ -125,6 +134,7 @@ struct FontStyle: ViewModifier {
     }
 }
 
+// EntryBannerStyle: 横幅样式的视图修饰器
 struct EntryBannerStyle: ViewModifier {
     var theme: JournalTheme
     func body(content: Content) -> some View {
@@ -136,6 +146,7 @@ struct EntryBannerStyle: ViewModifier {
     }
 }
 
+// BackgroundStyle: 背景样式的视图修饰器
 struct BackgroundStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
@@ -144,6 +155,7 @@ struct BackgroundStyle: ViewModifier {
     }
 }
 
+// ListRowStyle: 列表行样式的视图修饰器
 struct ListRowStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
@@ -152,6 +164,7 @@ struct ListRowStyle: ViewModifier {
     }
 }
 
+// EntryListStyle: 列表整体样式的视图修饰器
 struct EntryListStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
