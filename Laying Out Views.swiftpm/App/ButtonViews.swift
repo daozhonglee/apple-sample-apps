@@ -4,13 +4,14 @@ See the License.txt file for this sample’s licensing information.
 
 import SwiftUI
 
+// RemoveCardButton: 删除卡片的按钮组件
 struct RemoveCardButton: View {
-    @Binding var entryCopy: Entry
-    var card: Card
-    var isEditing : Bool
-    var row: Int
-    var index: Int
-    var action: () -> Void = { }
+    @Binding var entryCopy: Entry      // 日记条目的副本
+    var card: Card                     // 要删除的卡片
+    var isEditing: Bool               // 是否处于编辑状态
+    var row: Int                      // 卡片所在行
+    var index: Int                    // 卡片在行中的索引
+    var action: () -> Void = { }      // 点击后的回调操作
     
     var body: some View {
         Button() {
@@ -25,9 +26,10 @@ struct RemoveCardButton: View {
     }
 }
 
+// FontButton: 字体选择按钮
 struct FontButton: View {
-    @Binding var entry: Entry
-    var font : JournalFont
+    @Binding var entry: Entry         // 当前日记条目
+    var font: JournalFont            // 字体选项
     var action: () -> Void = { }
 
     var body: some View {
@@ -46,13 +48,16 @@ struct FontButton: View {
     }
 }
 
+// EditingButton: 编辑模式切换按钮
 struct EditingButton: View {
-    @Binding var entries: [Entry]
-    @Binding var entry: Entry
-    @Binding var entryCopy: Entry
-    @Binding var isNew: Bool
-    @Binding var isEditing : Bool
+    @Binding var entries: [Entry]     // 所有日记条目
+    @Binding var entry: Entry         // 当前条目
+    @Binding var entryCopy: Entry     // 当前条目的副本
+    @Binding var isNew: Bool          // 是否是新条目
+    @Binding var isEditing: Bool      // 是否处于编辑状态
     var action: () -> Void = { }
+    
+    // 判断条目是否已添加到列表中
     var isAdded: Bool {
         entries.filter({ $0.id == entryCopy.id }).first != nil
     }
@@ -95,13 +100,14 @@ struct EditingButton: View {
     }
 }
 
+// EntryDetail: 日记条目详情视图
 struct EntryDetail: View {
-    @Binding var entries: [Entry]
-    @Binding var entry: Entry
+    @Binding var entries: [Entry]     // 所有日记条目
+    @Binding var entry: Entry         // 当前条目
     
-    @State private var isNew: Bool
-    @State private var isEditing: Bool 
-    @State private var entryCopy = Entry()
+    @State private var isNew: Bool    // 是否是新条目
+    @State private var isEditing: Bool // 是否处于编辑状态
+    @State private var entryCopy = Entry() // 编辑时的副本
     
     init(entries: Binding<[Entry]>, entry: Binding<Entry>, isNew: Bool) {
         self._entries = entries
@@ -130,9 +136,10 @@ struct EntryDetail: View {
     }
 }
 
+// SettingsButton: 设置按钮组件
 struct SettingsButton: View {
-    @Binding var showSettings: Bool
-    var currentEntry: Entry = Entry()
+    @Binding var showSettings: Bool   // 控制设置视图的显示
+    var currentEntry: Entry = Entry() // 当前条目
     var action: () -> Void = { }
 
     var body: some View {
@@ -145,8 +152,9 @@ struct SettingsButton: View {
     }
 }
 
+// SettingsButtonView: 设置按钮的视觉表现
 struct SettingsButtonView: View {
-    var theme: JournalTheme
+    var theme: JournalTheme          // 当前主题
     
     var body: some View {
         VStack (spacing: 0) {
@@ -160,6 +168,7 @@ struct SettingsButtonView: View {
     }
 }
 
+// NewEntryLabel: 新建条目的标签组件
 struct NewEntryLabel: View {
     var body: some View {
         ZStack {
