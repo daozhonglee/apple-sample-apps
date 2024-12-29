@@ -1,0 +1,10 @@
+{
+  "MLModelCreatorDefinedKey" : {
+    "com.apple.createml.app.tag" : "97",
+    "Prediction Window Size" : "1",
+    "com.apple.createml.app.version" : "4.0 Beta",
+    "com.apple.coreml.model.preview.type" : "handPoseClassifier",
+    "coreml_codegen_language" : "Swift",
+    "Target Frame Rate" : "30.0"
+  }
+}
