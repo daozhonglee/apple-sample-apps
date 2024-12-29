@@ -5,12 +5,19 @@ See the License.txt file for this sample’s licensing information.
 import SwiftUI
 import Photos
 
+/// 照片详情查看视图
 struct PhotoView: View {
+    // 照片资源对象
     var asset: PhotoAsset
+    // 图片缓存管理器
     var cache: CachedImageManager?
+    // 当前显示的图片
     @State private var image: Image?
+    // 图片请求ID
     @State private var imageRequestID: PHImageRequestID?
+    // 关闭视图的环境变量
     @Environment(\.dismiss) var dismiss
+    // 目标图片尺寸
     private let imageSize = CGSize(width: 1024, height: 1024)
     
     var body: some View {
@@ -45,9 +52,10 @@ struct PhotoView: View {
         }
     }
     
+    /// 底部按钮视图
     private func buttonsView() -> some View {
         HStack(spacing: 60) {
-            
+            // 收藏按钮
             Button {
                 Task {
                     await asset.setIsFavorite(!asset.isFavorite)
@@ -57,6 +65,7 @@ struct PhotoView: View {
                     .font(.system(size: 24))
             }
 
+            // 删除按钮
             Button {
                 Task {
                     await asset.delete()

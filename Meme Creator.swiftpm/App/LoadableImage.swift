@@ -35,6 +35,7 @@ struct LoadableImage: View {
                     Text("Please try again.")
                         .font(.title3)
                 }
+                
             } else {
                 // 加载过程中显示进度指示器
                 ProgressView()

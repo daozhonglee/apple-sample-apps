@@ -16,6 +16,8 @@ let package = Package(
         .iOSApplication(
             name: "Capturing Photos",
             targets: ["App"],
+            bundleIdentifier: "com.measure",
+            teamIdentifier: "8H5W96W683",
             displayVersion: "1.0",
             bundleVersion: "1",
             appIcon: .asset("AppIcon"),
